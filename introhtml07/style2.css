@@ -50,3 +50,7 @@ li:last-child{
     background-color: blueviolet;
 }
 */
+a:hover{
+    background-color: blueviolet;
+    font-size: 2rem;
+}
