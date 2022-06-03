@@ -1,0 +1,17 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    max-width: 960px;
+    margin: auto;
+}
+.container-imagem {
+    position: relative;
+    text-align: center;
+}
+.texto-imagem {
+    position: absolute;
+    bottom: 1rem;
+    right: 7rem;
+    font-size: 2rem;
+    color: white;
+}
