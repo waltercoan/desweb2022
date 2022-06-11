@@ -1,0 +1,22 @@
+<h3>Clientes</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each listaclientes}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.nome}}</td>
+            <td>{{this.endereco}}</td>
+            <td>{{this.telefone}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
