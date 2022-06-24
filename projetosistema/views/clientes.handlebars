@@ -1,5 +1,7 @@
 <h3>Clientes</h3>
 
+<a href="/clientes/novo" class="btn btn-primary">Novo</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -11,8 +13,8 @@
     </thead>
     <tbody>
         {{#each listaclientes}}
-        <tr>
-            <td>{{this.id}}</td>
+        <tr> <!-- Table ROW --> 
+            <td>{{this.id}}</td> <!-- Table DATA --> 
             <td>{{this.nome}}</td>
             <td>{{this.endereco}}</td>
             <td>{{this.telefone}}</td>
