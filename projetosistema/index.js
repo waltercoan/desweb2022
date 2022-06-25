@@ -38,15 +38,39 @@ app.get('/clientes/novo', function(req,res){
     res.render('formcliente');
 });
 
+app.get('/clientes/alterar/:id', function(req,res){
+    let idcliente = req.params['id'];
+    let umcliente = fakedata.find( o => o.id == idcliente);
+    
+    res.render('formcliente', {cliente: umcliente});
+    
+});
+
+
+
 app.post('/clientes/save', function(req,res){
-    let novocliente = {
-        nome: req.body.nome,
-        endereco: req.body.endereco,
-        sexo: req.body.sexo,
-        telefone: req.body.telefone,
-        id: 0
-    };
-    fakedata.push(novocliente);
+    let clienteantigo = fakedata.find(o => o.id == req.body.id);
+
+    if(clienteantigo != undefined){
+        /*ALTERAR */
+        clienteantigo.nome = req.body.nome;
+        clienteantigo.endereco = req.body.endereco;
+        clienteantigo.telefone = req.body.telefone;
+        clienteantigo.sexo = req.body.sexo;
+    }else{
+        /*INCLUIR */
+        let maxid = Math.max(...fakedata.map( o => o.id));
+        if (maxid == -Infinity) maxid = 0;
+
+        let novocliente = {
+            nome: req.body.nome,
+            endereco: req.body.endereco,
+            sexo: req.body.sexo,
+            telefone: req.body.telefone,
+            id: maxid + 1
+        };
+        fakedata.push(novocliente);
+    }
     res.redirect("/clientes");
 });
 

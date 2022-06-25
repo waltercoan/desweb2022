@@ -9,6 +9,7 @@
             <th>Nome</th>
             <th>Endereço</th>
             <th>Telefone</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,10 @@
             <td>{{this.nome}}</td>
             <td>{{this.endereco}}</td>
             <td>{{this.telefone}}</td>
+            <td>
+                <a href="/clientes/alterar/{{this.id}}" class="btn btn-primary">Alterar</a>
+
+            </td>
         </tr>
         {{/each}}
     </tbody>
