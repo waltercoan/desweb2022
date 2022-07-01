@@ -41,6 +41,16 @@ app.get('/', function(req,res){
     res.render('index');
 });
 
+app.get('/clientes/delete/:id', function(req,res){
+    let umcliente = fakedata.find(o => o.id == req.params['id']);
+    let index = fakedata.indexOf(umcliente);
+    if (index > -1){
+        fakedata.splice(index,1);
+    }
+    res.render('cliente/clientes',{data: fakedata});
+});
+
+
 app.get('/clientes/novo', function(req,res){
     res.render('cliente/formcliente');
 });
