@@ -34,7 +34,7 @@ create({}).handlebars.registerHelper('checked', function(value, test) {
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req,res){
     //res.send("<h1>eu nao acredito</h1>");
@@ -42,14 +42,14 @@ app.get('/', function(req,res){
 });
 
 app.get('/clientes/novo', function(req,res){
-    res.render('formcliente');
+    res.render('cliente/formcliente');
 });
 
 app.get('/clientes/alterar/:id', function(req,res){
     let idcliente = req.params['id'];
     let umcliente = fakedata.find( o => o.id == idcliente);
     
-    res.render('formcliente', {cliente: umcliente});
+    res.render('cliente/formcliente', {cliente: umcliente});
     
 });
 
@@ -86,7 +86,7 @@ app.post('/clientes/save', function(req,res){
 
 app.get('/clientes', function(req,res){
     //res.send("<h1>eu nao acredito</h1>");
-    res.render('clientes', {listaclientes: fakedata});
+    res.render('cliente/clientes', {listaclientes: fakedata});
 });
 
 /*inicialização da aplicação NodeJS + Express */
