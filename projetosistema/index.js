@@ -1,5 +1,6 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
+const { create } = require('express-handlebars');
 const bodyparser = require('body-parser');
 const path = require('path');
 const app = express();
@@ -9,13 +10,15 @@ const fakedata = [
         id: 1,
         nome: 'Zezinho',
         endereco: 'Rua lalalal 100',
-        telefone: '5555-1234'
+        telefone: '5555-1234',
+        cancelado: 'nao'
     },
     {
         id: 2,
         nome: 'Huguinho',
         endereco: 'Rua lululul 200',
-        telefone: '5555-4321'
+        telefone: '5555-4321',
+        cancelado: 'sim'
     }
 ];
 /*Configura a engine (motor) do express para utilizar o handlebars */
@@ -23,6 +26,10 @@ app.use(bodyparser.urlencoded({extended: false}));
 app.set('view engine','handlebars');
 app.engine('handlebars', engine());
 
+create({}).handlebars.registerHelper('checked', function(value, test) {
+    if (value == undefined) return '';
+    return value==test ? 'checked' : '';
+});
 /*disponibilizando acesso para as bibliotecas estaticas do bootstrap e jquery */
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
@@ -57,6 +64,7 @@ app.post('/clientes/save', function(req,res){
         clienteantigo.endereco = req.body.endereco;
         clienteantigo.telefone = req.body.telefone;
         clienteantigo.sexo = req.body.sexo;
+        clienteantigo.cancelado = req.body.cancelado;
     }else{
         /*INCLUIR */
         let maxid = Math.max(...fakedata.map( o => o.id));
@@ -67,7 +75,8 @@ app.post('/clientes/save', function(req,res){
             endereco: req.body.endereco,
             sexo: req.body.sexo,
             telefone: req.body.telefone,
-            id: maxid + 1
+            id: maxid + 1,
+            cancelado: req.body.cancelado
         };
         fakedata.push(novocliente);
     }

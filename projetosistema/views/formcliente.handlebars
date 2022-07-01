@@ -19,6 +19,11 @@
         <label for="txttelefone">Telefone:</label>
         <input class="form-control" value="{{cliente.telefone}}" type="text" id="txttelefone" name="telefone">
     </div>
+    <div class="form-group">
+        <label for="txtcancelado">Cancelado:</label>
+        <input  value="sim" type="radio" id="txtcancelado" name="cancelado" {{checked cliente.cancelado 'sim'}}>SIM
+        <input  value="nao" type="radio" id="txtcancelado" name="cancelado" {{checked cliente.cancelado 'nao'}}>NÃO
+    </div>
 
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
